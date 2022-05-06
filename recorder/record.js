@@ -19,6 +19,7 @@ function record(){
 function success(s){
     stream=s;
     preview.srcObject=s;
+    preview.play();
     stopButton.removeAttribute("disabled");
     saveButton.removeAttribute("disabled");
     playButton.removeAttribute("disabled");
@@ -68,4 +69,14 @@ function play(){
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
+}
+function playVideo(){
+    if (video == null || video.length == 0){
+        alert("没有视频");
+        return;
+    }
+    if(!playUrl)
+    playUrl = URL.createObjectURL(new Blob(video, {type: "video/" + type}));
+    preview.src = playUrl;
+    preview.play();
 }
