@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <title>录屏</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css"/>
     </head>
     <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
@@ -9,7 +10,10 @@
                 <a href="javascript:;" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white">
                     <i class="mdui-icon material-icons">&#xe5d2;</i>
                 </a>
-                <a href="javascript:;" class="mdui-typo-title">录屏</a>
+                <a class="mdui-typo-title">录屏</a>
+                <select id="format" class="mdui-select" style="color: white; display: none;">
+                    <option value="webm">WebM</option>
+                </select>
                 <div class="mdui-toolbar-spacer"></div>
                 <a id="start" href="javascript:record();" class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: '开始录屏'}">
                     <i class="mdui-icon material-icons">&#xe04b;</i>
@@ -26,7 +30,7 @@
             </div>
         </div>
         <video id="preview" controls style="width: 100%"></video>
-        <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"></script>
         <script src="record.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"></script>
     </body>
 </html>

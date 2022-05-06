@@ -3,6 +3,7 @@ var stopButton = document.querySelector("#stop");
 var saveButton = document.querySelector("#save");
 var playButton = document.querySelector("#play");
 var preview = document.querySelector("#preview");
+var format = document.querySelector("#format");
 var recorder;
 var stream;
 var video = null;
@@ -11,6 +12,8 @@ var playUrl = null;
 function record(){
     video = [];
     playUrl = null;
+    type = format.value;
+    format.style.display = "none";
     navigator.mediaDevices.getDisplayMedia().then(success);
 }
 function success(s){
