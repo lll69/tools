@@ -30,6 +30,9 @@ function success(s){
         video.push(data.data);
     }
     recorder.start(500);
+    window.onbeforeunload = function(){
+        return "";
+    };
 }
 function stop(){
     if (stream){
@@ -55,6 +58,7 @@ function save(){
     a.click();
     document.body.removeChild(a);
     window.URL.revokeObjectURL(url);
+    window.onbeforeunload = null;
 }
 function play(){
     if (video == null || video.length == 0){
@@ -77,6 +81,7 @@ function playVideo(){
     }
     if(!playUrl)
     playUrl = URL.createObjectURL(new Blob(video, {type: "video/" + type}));
+    preview.srcObject = null;
     preview.src = playUrl;
     preview.play();
 }
