@@ -4,9 +4,10 @@ if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+
   analytics.load("m7JbG677mYHPmuKcLVFGkjiBIlHhDEFf");
   analytics.page();
   }}();
-window.goatcounter = {allow_frame
-: true};
+window.goatcounter = {allow_frame: true};
 s = document.createElement("script");
 s.src = "https://gc.zgo.at/count.js";
 s.setAttribute("data-goatcounter","https://lll69.goatcounter.com/count");
+s.setAttribute("defer","");
+s.setAttribute("async","");
 document.head.appendChild(s);
