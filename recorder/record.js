@@ -43,7 +43,7 @@ function stop() {
     stream = null;
     if (recorder) recorder.stop();
     recorder = null;
-    stopButton.setAttribute("disabled", "");
+    // stopButton.setAttribute("disabled", "");
 }
 function save() {
     if (video == null || video.length == 0) {
@@ -85,3 +85,5 @@ function playVideo() {
     preview.src = playUrl;
     preview.play();
 }
+if (new URLSearchParams(location.search).get("noplay"))
+    playButton.style.display = "none";

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <title>录屏</title>    
+    <title>录屏</title>
     <script>if (!location.toString().startsWith("file:") && location.toString().endsWith(".html")) location = location.toString().replace(".html", "")</script>
     <link href="https://fastly.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css" rel="stylesheet" />
     <script src="../track.js"></script>
@@ -22,16 +22,16 @@
             mdui-tooltip="{content: '开始录屏'}">
             <i class="mdui-icon material-icons">&#xe04b;</i>
         </a>
-        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" disabled href="javascript:stop();" id="stop"
+        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" href="javascript:stop();" id="stop"
             mdui-tooltip="{content: '停止'}">
             <i class="mdui-icon material-icons">&#xe047;</i>
         </a>
-        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" disabled href="javascript:save();" id="save"
+        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" disabled onclick="save();" id="save"
             mdui-tooltip="{content: '保存'}">
             <i class="mdui-icon material-icons">&#xe161;</i>
         </a>
-        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" disabled href="javascript:playVideo();"
-            id="play" mdui-tooltip="{content: '播放'}">
+        <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" disabled onclick="playVideo();" id="play"
+            mdui-tooltip="{content: '播放'}">
             <i class="mdui-icon material-icons">&#xe63a;</i>
         </a>
     </div>

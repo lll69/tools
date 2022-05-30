@@ -1,6 +1,5 @@
 // ==UserScript==
 // @name         高度限制
-// @description  高度限制
 // @namespace    https://lll69.github.io/
 // @version      1.0
 // @author       lll69
@@ -14,11 +13,10 @@
 // @icon         https://aerfaying.com/Content/logo.ico
 // @grant        none
 // @run-at       document-end
-// @license      MIT
 // ==/UserScript==
 
-(function() {
-    var s=document.createElement("style");
-    s.innerHTML=".user-home_userInfo_2szc4{max-height:max-content!important}"
-    document.head.appendChild(s);
-})();
+
+var st = document.createElement("style");
+st.innerHTML = ".user-home_userInfo_2szc4{max-height:max-content!important}"
+document.head.appendChild(st);
+
