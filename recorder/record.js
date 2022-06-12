@@ -14,7 +14,7 @@ function record() {
     playUrl = null;
     type = format.value;
     format.style.display = "none";
-    navigator.mediaDevices.getDisplayMedia().then(success);
+    navigator.mediaDevices.getDisplayMedia().then(success).catch(error);
 }
 function success(s) {
     stream = s;
@@ -33,6 +33,9 @@ function success(s) {
     window.onbeforeunload = function () {
         return "";
     };
+}
+function error(e) {
+    alert("错误:" + e.message);
 }
 function stop() {
     if (stream) {
