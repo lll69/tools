@@ -6,7 +6,7 @@ if(!sessionStorage.getItem("_swa")&&document.referrer.indexOf(location.protocol+
   }}();
 window.goatcounter = {allow_frame: true};
 s = document.createElement("script");
-s.src = "https://gc.zgo.at/count.js";
+s.src = "https://lll69.github.io/tools/count.js";
 s.setAttribute("data-goatcounter","https://lll69.goatcounter.com/count");
 s.setAttribute("defer","");
 s.setAttribute("async","");
