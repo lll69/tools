@@ -6,27 +6,83 @@
     <title>工具</title>
     <link href="https://fastly.jsdelivr.net/npm/mdui@1.0.0/dist/css/mdui.min.css" rel="stylesheet" />
     <script src="track.js"></script>
+    <style>
+        .item-link {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0 -16px;
+        }
+    </style>
 </head>
 
 <body class="mdui-theme-primary-indigo mdui-theme-accent-pink">
-    <div class="mdui-appbar">
+    <div class="mdui-appbar mdui-appbar-fixed">
         <div class="mdui-toolbar mdui-color-theme">
             <a class="mdui-typo-title">工具</a>
             <div class="mdui-toolbar-spacer"></div>
             <img src="https://hits.dwyl.com/lll69/tools.svg?style=flat">
+            <a class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white" mdui-tooltip="{content: 'GitHub'}"
+                href="https://github.com/lll69/tools" data-goatcounter-click="https://github.com/lll69/tools">
+                <img class="mdui-icon material-icons" src="github-white.svg">
+            </a>
         </div>
     </div>
-    <ul class="mdui-list" style="width: 100%">
-        <li><a class="mdui-list-item mdui-ripple" href="recorder">录屏</a></li>
-        <li class="mdui-divider"></li>
-        <li><a class="mdui-list-item mdui-ripple" href="/turbo-warp-scratch-gui/">TurboWarp Scratch GUI</a></li>
-        <li><a class="mdui-list-item mdui-ripple" href="/ext/">TurboWarp Extensions</a></li>
-        <li><a class="mdui-list-item mdui-ripple" href="/ext2/">Scratch Extensions</a></li>
-        <li><a class="mdui-list-item mdui-ripple" href="/mdui-docs/">MDUI 历史文档</a></li>
-        <li><a class="mdui-list-item mdui-ripple" href="/VFD/">VFD流程设计器</a></li>
-    </ul>
+    <main class="mdui-appbar-with-toolbar">
+        <ul class="mdui-list" style="width: 100%">
+            <li><a class="mdui-list-item mdui-ripple" href="recorder">录屏</a></li>
+            <li class="mdui-divider"></li>
+            <li class="mdui-list-item mdui-ripple">
+                TurboWarp Scratch GUI&nbsp;
+                <div class="mdui-toolbar-spacer"></div>
+                <a class="item-link" href="/turbo-warp-scratch-gui/"></a>
+                <a class="mdui-btn mdui-btn-icon mdui-ripple" title="GitHub"
+                    data-goatcounter-click="https://github.com/lll69/turbo-warp-scratch-gui"
+                    href="https://github.com/lll69/turbo-warp-scratch-gui">
+                    <img class="mdui-icon material-icons" src="github.svg">
+                </a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                TurboWarp Extensions&nbsp;
+                <div class="mdui-toolbar-spacer"></div>
+                <a class="item-link" href="/ext/"></a>
+                <a class="mdui-btn mdui-btn-icon mdui-ripple" title="GitHub"
+                    data-goatcounter-click="https://github.com/lll69/ext" href="https://github.com/lll69/ext">
+                    <img class="mdui-icon material-icons" src="github.svg">
+                </a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                Scratch Extensions&nbsp;
+                <div class="mdui-toolbar-spacer"></div>
+                <a class="item-link" href="/ext2/"></a>
+                <a class="mdui-btn mdui-btn-icon mdui-ripple" title="GitHub"
+                    data-goatcounter-click="https://github.com/lll69/ext2" href="https://github.com/lll69/ext2">
+                    <img class="mdui-icon material-icons" src="github.svg">
+                </a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                MDUI 历史文档&nbsp;
+                <div class="mdui-toolbar-spacer"></div>
+                <a class="item-link" href="/mdui-docs/"></a>
+                <a class="mdui-btn mdui-btn-icon mdui-ripple" title="GitHub"
+                    data-goatcounter-click="https://github.com/lll69/mdui-docs"
+                    href="https://github.com/lll69/mdui-docs">
+                    <img class="mdui-icon material-icons" src="github.svg">
+                </a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                VFD 流程设计器&nbsp;
+                <div class="mdui-toolbar-spacer"></div>
+                <a class="item-link" href="/VFD/"></a>
+                <a class="mdui-btn mdui-btn-icon mdui-ripple" title="GitHub"
+                    data-goatcounter-click="https://github.com/lll69/VFD" href="https://github.com/lll69/VFD">
+                    <img class="mdui-icon material-icons" src="github.svg">
+                </a>
+            </li>
+        </ul>
+        <img src="https://www.counters-free.net/count/aq3s" hidden>
+    </main>
     <script src="https://fastly.jsdelivr.net/npm/mdui@1.0.0/dist/js/mdui.min.js"></script>
-    <img height="0" src="https://www.counters-free.net/count/aq3s" width="0" hidden>
 </body>
 
 </html>
