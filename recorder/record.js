@@ -29,7 +29,7 @@ function success(s) {
     recorder.ondataavailable = function (data) {
         video.push(data.data);
     }
-    recorder.start(500);
+    recorder.start(10000);
     window.onbeforeunload = function () {
         return "";
     };
