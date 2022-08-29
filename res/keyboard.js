@@ -16,6 +16,7 @@ var keySettings;
 
     <head>
         <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width" />
         <title>软键盘设置</title>
     </head>
     
