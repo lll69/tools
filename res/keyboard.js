@@ -1,13 +1,4 @@
-// ==UserScript==
-// @name        40code软键盘
-// @match       http://40code.com/*
-// @match       https://40code.com/*
-// @grant       none
-// @version     1.0
-// @author      lll69
-// @description 40code添加软键盘
-// @run-at      document-start
-// ==/UserScript==
+// 40code软键盘
 
 var keyhtml;
 var keySettings;
