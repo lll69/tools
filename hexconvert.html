@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>进制转换</title>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="在线,进制,转换,2进制,8进制,10进制,16进制,36进制,二进制,八进制,十进制,十六进制,三十六进制" />
+    <style>
+        body {
+            text-align: center;
+            /*overflow: hidden;*/
+        }
+
+        main {
+            margin-bottom: 512px;
+        }
+
+        main>div {
+            display: inline-block;
+            margin: 0.5ch;
+        }
+
+        *::-webkit-scrollbar {
+            display: none;
+        }
+
+        template {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>进制转换 <a hidden href="https://lll69.vercel.app/api/numberc">API</a></h1>
+    <main>
+        <noscript>启用 JavaScript</noscript>
+    </main>
+    <template id="tl">
+        输入数字:
+        <input type="text" id="number" value="123456" />
+        <div style="display: inline-block">
+            <select id="select">
+                <option value="2">2&ensp;进制</option>
+                <option value="3">3&ensp;进制</option>
+                <option value="4">4&ensp;进制</option>
+                <option value="5">5&ensp;进制</option>
+                <option value="6">6&ensp;进制</option>
+                <option value="7">7&ensp;进制</option>
+                <option value="8">8&ensp;进制</option>
+                <option value="9">9&ensp;进制</option>
+                <option value="10">10进制</option>
+                <option value="11">11进制</option>
+                <option value="12">12进制</option>
+                <option value="13">13进制</option>
+                <option value="14">14进制</option>
+                <option value="15">15进制</option>
+                <option value="16">16进制</option>
+                <option value="17">17进制</option>
+                <option value="18">18进制</option>
+                <option value="19">19进制</option>
+                <option value="20">20进制</option>
+                <option value="21">21进制</option>
+                <option value="22">22进制</option>
+                <option value="23">23进制</option>
+                <option value="24">24进制</option>
+                <option value="25">25进制</option>
+                <option value="26">26进制</option>
+                <option value="27">27进制</option>
+                <option value="28">28进制</option>
+                <option value="29">29进制</option>
+                <option value="30">30进制</option>
+                <option value="31">31进制</option>
+                <option value="32">32进制</option>
+                <option value="33">33进制</option>
+                <option value="34">34进制</option>
+                <option value="35">35进制</option>
+                <option value="36">36进制</option>
+            </select>
+        </div>
+    </template>
+    <script>
+        var main = document.querySelector("main");
+        var tl = document.querySelector("#tl");
+        var divs = [];
+        var addedCount = 0;
+        var numbers = [];
+        var selects = [];
+        var tempVal = new Array(37);
+        var count = 0;
+        var lastId = 0;
+        function onChange(id, isIn) {
+            if (isIn) {
+                lastId = id;
+            } else {
+                id = lastId;
+            }
+            var number = numbers[id].value;
+            numbers[id].value = number;
+            var n = parseInt(selects[id].value);
+            var result = parseInt(number, n);
+            var i;
+            if (isNaN(result)) {
+                for (i = 0; i < count; i++) {
+                    numbers[i].value = "";
+                }
+            } else {
+                for (i = 2; i <= 36; i++) {
+                    tempVal[i] = result.toString(i);
+                }
+                for (i = 0; i < count; i++) {
+                    if (count != id) {
+                        numbers[i].value = tempVal[selects[i].value];
+                    }
+                }
+            }
+        }
+        function createDiv() {
+            var div = document.createElement("div");
+            divs.push(div);
+            div.innerHTML = tl.innerHTML;
+            var c = count++;
+            var e;
+            numbers.push(e = div.querySelector("#number"));
+            e.oninput = function () { onChange(c, true) };
+            e.onfocus = e.oninput;
+            selects.push(e = div.querySelector("#select"));
+            e.oninput = function () { onChange(c, false) };
+            e.children[(count + 3) * 2 % 35].selected = true;
+        }
+        function createDivs(c) {
+            for (var i = 0; i < c; i++) {
+                createDiv();
+            }
+            onChange(lastId, true);
+        }
+        createDivs(512);
+        function removeDivs() {
+            for (; addedCount > lastId + 1; addedCount--) {
+                if (divs[addedCount - 1].getBoundingClientRect().top < document.body.clientHeight) {
+                    break;
+                }
+                main.removeChild(divs[addedCount - 1]);
+            }
+        }
+        function addDivs() {
+            for (; addedCount < count; addedCount++) {
+                if (addedCount > 0 && divs[addedCount - 1].getBoundingClientRect().top > document.body.clientHeight) {
+                    break;
+                }
+                main.appendChild(divs[addedCount]);
+            }
+            if (addedCount == count) createDivs(512);
+            removeDivs();
+        }
+        addDivs();
+        document.body.onresize = addDivs;
+        document.onscroll = function () {
+            clearTimeout(addDivs);
+            setTimeout(addDivs, 0);
+        };
+        setInterval(addDivs, 1024);
+        numbers[0].focus();
+        onChange(0, true);
+    </script>
+</body>
+
+</html>
