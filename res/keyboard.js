@@ -24,6 +24,9 @@ var keySettings;
                 <li>
                     <label>按键大小(px): <input required name="keySize" type="number" value="48" min="16" /></label>
                 </li>
+                <li>
+                    <label>中间宽度(px): <input required name="centerSize" type="number" value="64" min="0" /></label>
+                </li>
             </ul>
             <input type="submit" value="保存" />
             <input type="reset" />
@@ -54,6 +57,7 @@ var keySettings;
                     waitTime: getItem("waitTime"),
                     keySpeed: getItem("keySpeed"),
                     keySize: getItem("keySize"),
+                    centerSize: getItem("centerSize"),
                 });
             }
         </script>
@@ -63,6 +67,7 @@ var keySettings;
     keySettings = URL.createObjectURL(new Blob([keySettings], { type: 'text/html' }));
 }
 var keySize = 48;
+var centerSize = 64;
 function refreshH() {
     keyhtml = `<summary>软键盘</summary>
     <div oncontextmenu="return false" ondragstart="return false"
@@ -72,6 +77,7 @@ function refreshH() {
                 border-color: transparent;
                 display: inline-block;
                 opacity: 0;
+                pointer-events: none;
             }
     
     
@@ -120,8 +126,8 @@ function refreshH() {
                 src="data:image/svg+xml;base64,PCEtLSBodHRwczovL2dpdGh1Yi5jb20vSmV0QnJhaW5zL0pldEJyYWluc01vbm8gLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDYwMCA3MzAiPg0KICAgIDxwYXRoIGQ9Ik0yNTUgMHY1MjBxMCAyMiAyIDQ0LjV0MyAzNS41aC0xMHEtMTAgLTE1IC01NSAtNTRsLTE4NSAtMTU4djEwNWwyOTEgMjQ3bDI4OSAtMjQ2di0xMDVsLTE4NiAxNThxLTIyIDE5IC0zNS41IDMzdC0xOC41IDIwaC0xMHEyIC0xMyAzLjUgLTM1LjV0MS41IC00NC41di01MjBoLTkweiIgLz4NCjwvc3ZnPg==" />
             <img class="placeholder" />
         </div>
-        <div class="centerKey">
-            <img id="settings"
+        <div class="centerKey" style="width:${centerSize}px">
+            <img id="settings" style="position:relative;left:${(64 - centerSize) / -2}px"
                 src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI0IDI0IiBoZWlnaHQ9IjI0IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHdpZHRoPSIyNCI+PGc+PHBhdGggZD0iTTAsMGgyNHYyNEgwVjB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTE5LjE0LDEyLjk0YzAuMDQtMC4zLDAuMDYtMC42MSwwLjA2LTAuOTRjMC0wLjMyLTAuMDItMC42NC0wLjA3LTAuOTRsMi4wMy0xLjU4YzAuMTgtMC4xNCwwLjIzLTAuNDEsMC4xMi0wLjYxIGwtMS45Mi0zLjMyYy0wLjEyLTAuMjItMC4zNy0wLjI5LTAuNTktMC4yMmwtMi4zOSwwLjk2Yy0wLjUtMC4zOC0xLjAzLTAuNy0xLjYyLTAuOTRMMTQuNCwyLjgxYy0wLjA0LTAuMjQtMC4yNC0wLjQxLTAuNDgtMC40MSBoLTMuODRjLTAuMjQsMC0wLjQzLDAuMTctMC40NywwLjQxTDkuMjUsNS4zNUM4LjY2LDUuNTksOC4xMiw1LjkyLDcuNjMsNi4yOUw1LjI0LDUuMzNjLTAuMjItMC4wOC0wLjQ3LDAtMC41OSwwLjIyTDIuNzQsOC44NyBDMi42Miw5LjA4LDIuNjYsOS4zNCwyLjg2LDkuNDhsMi4wMywxLjU4QzQuODQsMTEuMzYsNC44LDExLjY5LDQuOCwxMnMwLjAyLDAuNjQsMC4wNywwLjk0bC0yLjAzLDEuNTggYy0wLjE4LDAuMTQtMC4yMywwLjQxLTAuMTIsMC42MWwxLjkyLDMuMzJjMC4xMiwwLjIyLDAuMzcsMC4yOSwwLjU5LDAuMjJsMi4zOS0wLjk2YzAuNSwwLjM4LDEuMDMsMC43LDEuNjIsMC45NGwwLjM2LDIuNTQgYzAuMDUsMC4yNCwwLjI0LDAuNDEsMC40OCwwLjQxaDMuODRjMC4yNCwwLDAuNDQtMC4xNywwLjQ3LTAuNDFsMC4zNi0yLjU0YzAuNTktMC4yNCwxLjEzLTAuNTYsMS42Mi0wLjk0bDIuMzksMC45NiBjMC4yMiwwLjA4LDAuNDcsMCwwLjU5LTAuMjJsMS45Mi0zLjMyYzAuMTItMC4yMiwwLjA3LTAuNDctMC4xMi0wLjYxTDE5LjE0LDEyLjk0eiBNMTIsMTUuNmMtMS45OCwwLTMuNi0xLjYyLTMuNi0zLjYgczEuNjItMy42LDMuNi0zLjZzMy42LDEuNjIsMy42LDMuNlMxMy45OCwxNS42LDEyLDE1LjZ6Ii8+PC9nPjwvc3ZnPg==" />
             <br>
             <img class="placeholder" />
@@ -130,19 +136,19 @@ function refreshH() {
         </div>
         <div class="rightKey">
             <img class="placeholder" />
-            <img id="w" class="y180"
+            <img id="wd" class="y180"
                 src="data:image/svg+xml;base64,PCEtLSBodHRwczovL2dpdGh1Yi5jb20vSmV0QnJhaW5zL0pldEJyYWluc01vbm8gLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAtNzAgNjAwIDkwMCI+DQogICAgPHBhdGggZD0iTTEwOSAwbC04NCA3MzBoODZsNTUgLTU0MHEzIC0zMyA1LjUgLTY4LjV0My41IC01Ni41cTIgMjEgNS41IDU2LjV0Ny41IDY4LjVsNjggNTQwaDkzbDYyIC01NDBxNCAtMzMgOCAtNjguNXQ2IC01Ni41cTIgMjEgNC41IDU2LjV0Ni41IDY4LjVsNTcgNTQwaDgybC04NiAtNzMwaC0xMTNsLTYyIDU1MHEtNCAzNCAtNyA2Ni41dC01IDUwLjVxLTIgLTE4IC01LjUgLTUwLjV0LTcuNSAtNjYuNWwtNjcgLTU1MGgtMTEzeiIgLz4NCjwvc3ZnPg==" />
             <img class="placeholder" />
             <br />
-            <img id="a" class="y180"
+            <img id="ad" class="y180"
                 src="data:image/svg+xml;base64,PCEtLSBodHRwczovL2dpdGh1Yi5jb20vSmV0QnJhaW5zL0pldEJyYWluc01vbm8gLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAtNzAgNjAwIDkwMCI+DQogICAgPHBhdGggZD0iTTUwIDBsMTkwIDczMGgxMjFsMTg5IC03MzBoLTkxbC00OCAxOTRoLTIyMWwtNDggLTE5NGgtOTJ6TTIwOCAyNzBoMTg0bC01NiAyMjVxLTE2IDY0IC0yNSAxMDd0LTExIDU2cS0yIC0xMyAtMTEgLTU2dC0yNSAtMTA2eiIgLz4NCjwvc3ZnPg==" />
             <img id="enter" class="y180"
                 src="data:image/svg+xml;base64,DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAtNTAgNzAwIDEyMDAiPg0KICAgIDxwYXRoIGQ9Ik0wIDMzOGwyODcgMzM5di05NGwtMTQ0IC0xODFoNDcxdjYxNWgxMjN2LTczOGgtNTk0bDE0NCAtMTg0di05NXoiIC8+DQo8L3N2Zz4=" />
-            <img id="d" class="y180"
+            <img id="dd" class="y180"
                 src="data:image/svg+xml;base64,PCEtLSBodHRwczovL2dpdGh1Yi5jb20vSmV0QnJhaW5zL0pldEJyYWluc01vbm8gLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAtNzAgNjAwIDkwMCI+DQogICAgPHBhdGggZD0iTTkyIDB2NzMwaDE4OXE3MSAwIDEyMi41IC0yN3Q4MCAtNzZ0MjguNSAtMTE2di0yOTFxMCAtNjcgLTI4LjUgLTExNi41dC04MCAtNzYuNXQtMTIyLjUgLTI3aC0xODl6TTE4MiA4MGg5OXE2NiAwIDEwMy41IDM3dDM3LjUgMTAzdjI5MXEwIDY1IC0zNy41IDEwMnQtMTAzLjUgMzdoLTk5di01NzB6IiAvPg0KPC9zdmc+" />
             <br />
             <img class="placeholder" />
-            <img id="s" class="y180"
+            <img id="sd" class="y180"
                 src="data:image/svg+xml;base64,PCEtLSBodHRwczovL2dpdGh1Yi5jb20vSmV0QnJhaW5zL0pldEJyYWluc01vbm8gLS0+DQo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAtNzAgNjAwIDkwMCI+DQogICAgPHBhdGggZD0iTTMwNCAtMTBxLTEwNiAwIC0xNjkgNTV0LTYzIDE0N2g5MHEwIC01NSAzOSAtODguNXQxMDMgLTMzLjVxNjIgMCA5OSAzMy41dDM3IDg4LjVxMCA0MyAtMjIuNSA3NS41dC02MS41IDQ0LjVsLTEwOCAzNHEtNzMgMjMgLTExNC41IDc2dC00MS41IDEyM3EwIDg5IDU4LjUgMTQydDE1NS41IDUzdDE1NSAtNTN0NTggLTE0MmgtOTBxMCA1MyAtMzMuNSA4NHQtODkuNSAzMXEtNTcgMCAtOTEuNSAtMzF0LTM0LjUgLTgycTAgLTQwIDIzIC02OQ0KICAgIHQ2MyAtNDJsMTEyIC0zNnE2OSAtMjIgMTA5LjUgLTc4dDQwLjUgLTEzMHEwIC05MiAtNjEgLTE0N3QtMTYzIC01NXoiIC8+DQo8L3N2Zz4=" />
             <img class="placeholder" />
         </div>
@@ -159,6 +165,7 @@ function refreshK() {
     keySpeed = getLocal("keySpeed", 31);
     waitTime = getLocal("waitTime", 500);
     keySize = getLocal("keySize", 48);
+    centerSize = getLocal("centerSize", 64);
     refreshH();
 }
 var keySpeed = 31;
@@ -204,10 +211,10 @@ function bindK(element, vm) {
     bindKey(div.querySelector("#left"), "ArrowLeft", "left arrow", 37);
     bindKey(div.querySelector("#right"), "ArrowRight", "right arrow", 39);
     bindKey(div.querySelector("#space"), " ", "space", 32);
-    bindKey(div.querySelector("#w"), "w", "w", 119);
-    bindKey(div.querySelector("#a"), "a", "a", 97);
-    bindKey(div.querySelector("#s"), "s", "s", 115);
-    bindKey(div.querySelector("#d"), "d", "d", 100);
+    bindKey(div.querySelector("#wd"), "w", "w", 119);
+    bindKey(div.querySelector("#ad"), "a", "a", 97);
+    bindKey(div.querySelector("#sd"), "s", "s", 115);
+    bindKey(div.querySelector("#dd"), "d", "d", 100);
     bindKey(div.querySelector("#enter"), "Enter", "enter", 13);
     div.querySelector("#settings").onclick = function () {
         window.open(keySettings);
@@ -215,7 +222,7 @@ function bindK(element, vm) {
     element.appendChild(div);
     return div;
 }
-if (location.host == "40code.com" && !window.reg40) {
+if ((location.host == "40code.com" || location.host == "www.40code.com") && !window.reg40) {
     function reg() {
         var iframe = document.querySelector("iframe");
         if (iframe && iframe.contentWindow && iframe.contentWindow.vm)
